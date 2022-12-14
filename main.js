@@ -5,11 +5,18 @@ const menuHamIcon = document.querySelector('.menu')
 const mobileMenu = document.querySelector('.mobile-menu')
 const menuCartIcon = document.querySelector('.navbar-shopping-cart')
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer')
+const productDetailContainer = document.querySelector('#productDetail')
 const cardsContainer = document.querySelector('.cards-container')
+const productDetailCloseButton = document.querySelector('.product-detail-close')
 
 menuEmail.addEventListener('click', toggleDesktopMenu)
 menuHamIcon.addEventListener('click', toggleMobileMenu)
 menuCartIcon.addEventListener('click', toggleCartIcon)
+productDetailCloseButton.addEventListener('click', closeProductDetailAside)
+
+function closeProductDetailAside() {
+    productDetailContainer.classList.add('inactive')
+}
 
 function toggleDesktopMenu() {
 
@@ -47,6 +54,10 @@ function toggleCartIcon() {
     shoppingCartContainer.classList.toggle('inactive')
 }
 
+function openProductDetailAside() {
+    productDetailContainer.classList.remove('inactive')
+}
+
 const productList = []
 
 productList.push({
@@ -60,8 +71,6 @@ productList.push({
     price: 500,
     image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 })
-
-console.log(productList)
 
 /* <div class="product-card">
         <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
@@ -89,6 +98,7 @@ function renderProducts(arr) {
         // SE CREA LA IMAGEN Y SE LE AGREGA EL SRC CON LA FUENTE DE LA IMAGEN
         const productImg = document.createElement('img')
         productImg.setAttribute('src', product.image)
+        productImg.addEventListener('click', openProductDetailAside)
 
         // SE CREA EL CONTENEDOR INTERIOR CON LA INFORMACIÓN DEL PRODUCTO Y SE LE AGREGA LA CLASE 'PRODUCT-INFO'
         const productInfo = document.createElement('div')
